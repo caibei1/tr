@@ -22,6 +22,8 @@ func test()  {
 		time.Sleep(time.Second)
 		fmt.Println(zbc.GetLastBuyPrice(1))
 		fmt.Println(zbc.GetLastSellPrice(1))
+		fmt.Println(zbc.GetLastSuccessRMBPrice(1))
+		fmt.Println(zbc.GetOpen(1))
 	}
 
 }

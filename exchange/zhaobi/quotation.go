@@ -34,7 +34,9 @@ const LTC  = 7
 
 // 包含币的各种信息，所需要的所有信息从此处拿
 type ZBQuotation struct {
-	NewSuccess float64 // 最新成交价
+	Lastrmb float64 // 最新成交价
+	Range float64 // 涨幅
+	Open float64
 	Buys []ZBTr // 买单
 	Sells []ZBTr // 卖单
 	Histroy []ZBTr // 历史成交
@@ -132,7 +134,7 @@ type USDT struct {
 	Buy     FNumber   `json:"buy"`
 	Sell    FNumber   `json:"sell"`
 	Open    FNumber   `json:"open"`
-	Lastrmb FNumber   `json:"lastrmb"`
+	Lastrmb FNumber   `json:"lastrmb"` // 最新成交价，人民币
 	High    FNumber   `json:"high"` // 今日最高价
 	Low     FNumber   `json:"low"`  // 今日最低价
 	Vol     FNumber   `json:"vol"`
@@ -292,6 +294,9 @@ func SyncIndexInfo()  {
 			if i,ok := Symbol1[d.Symbol]; ok {
 				q := ZBQuotationMap[i]
 				q.Lock()
+				q.Lastrmb = float64(d.Lastrmb)
+				q.Range = float64(d.Range)
+				q.Open = float64(d.Open)
 				// todo
 				q.Unlock()
 			}
@@ -374,4 +379,16 @@ func (*ZBClient) GetLastSellPrice(symbol int) float64 {
 		}
 	}
 	return min
+}
+
+// 或者最新人民币成交价
+func (*ZBClient) GetLastSuccessRMBPrice(symbol int) float64 {
+	q := ZBQuotationMap[symbol]
+	return q.Lastrmb
+}
+
+
+func (*ZBClient) GetOpen(symbol int) float64 {
+	q := ZBQuotationMap[symbol]
+	return q.Open
 }
