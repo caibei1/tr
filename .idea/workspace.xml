@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88300580-eedc-4a43-ae2a-6860fdb1341d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/exchange/huobi/quotation.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exchange/huobi/huobi_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exchange/public.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/util/util.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exchange/huobi/quotation.go" beforeDir="false" afterPath="$PROJECT_DIR$/exchange/huobi/quotation.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/exchange/zhaobi/quotation.go" beforeDir="false" afterPath="$PROJECT_DIR$/exchange/zhaobi/quotation.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
@@ -19,8 +21,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
+            <state relative-caret-position="165">
+              <caret line="30" column="31" lean-forward="true" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
+              <folding>
+                <element signature="e#14#94#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/util/util.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -28,17 +42,59 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/exchange/zhaobi/quotation.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7700">
-              <caret line="384" column="39" selection-start-line="384" selection-start-column="17" selection-end-line="384" selection-end-column="39" />
+            <state relative-caret-position="189">
+              <caret line="179" column="29" selection-start-line="179" selection-start-column="29" selection-end-line="179" selection-end-column="29" />
+              <folding>
+                <element signature="e#16#140#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/exchange/huobi/quotation.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="127">
+              <caret line="111" column="18" lean-forward="true" selection-start-line="111" selection-start-column="18" selection-end-line="111" selection-end-column="18" />
+              <folding>
+                <element signature="e#15#127#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/exchange/public.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/exchange/huobi/huobi_test.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="125">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://C:/Go/src/testing/testing.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="65">
+              <caret line="829" selection-start-line="829" selection-end-line="829" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://C:/Go/src/runtime/panic.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="113">
+              <caret line="521" selection-start-line="521" selection-end-line="521" />
             </state>
           </provider>
         </entry>
@@ -57,6 +113,8 @@
       <find>make</find>
       <find>info</find>
       <find>.Info</find>
+      <find>fmt</find>
+      <find>买，卖为空， 获取市场信息失败</find>
     </findStrings>
   </component>
   <component name="GOROOT" path="C:\Go" />
@@ -68,9 +126,12 @@
       <list>
         <option value="$PROJECT_DIR$/exchange/zhaobi/class.go" />
         <option value="$PROJECT_DIR$/start/main.go" />
+        <option value="$PROJECT_DIR$/exchange/public.go" />
+        <option value="$PROJECT_DIR$/exchange/huobi/huobi_test.go" />
+        <option value="$PROJECT_DIR$/exchange/huobi/quotation.go" />
         <option value="$PROJECT_DIR$/exchange/zhaobi/quotation.go" />
         <option value="$PROJECT_DIR$/main.go" />
-        <option value="$PROJECT_DIR$/exchange/huobi/quotation.go" />
+        <option value="$PROJECT_DIR$/util/util.go" />
       </list>
     </option>
   </component>
@@ -85,6 +146,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -100,20 +162,12 @@
             <path>
               <item name="tr" type="b2602c69:ProjectViewProjectNode" />
               <item name="tr" type="462c0819:PsiDirectoryNode" />
-              <item name="exchange" type="462c0819:PsiDirectoryNode" />
-              <item name="huobi" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tr" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tr" type="462c0819:PsiDirectoryNode" />
-              <item name="exchange" type="462c0819:PsiDirectoryNode" />
-              <item name="zhaobi" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -144,7 +198,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Go Build.go build main.go">
     <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="tr" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -154,11 +208,55 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
+    <configuration name="TestGetHBInfo in tr/exchange/huobi" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="tr" />
+      <working_directory value="$PROJECT_DIR$/exchange/huobi" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="tr/exchange/huobi" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestGetHBInfo$" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build main.go" />
+        <item itemvalue="Go Test.TestGetHBInfo in tr/exchange/huobi" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="TestHistory">
+    <history-entry file="TestGetHBInfo_in_tr_exchange_huobi - 2019.07.04 at 19h 23m 54s.xml">
+      <configuration name="TestGetHBInfo in tr/exchange/huobi" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestGetHBInfo_in_tr_exchange_huobi - 2019.07.04 at 19h 24m 32s.xml">
+      <configuration name="TestGetHBInfo in tr/exchange/huobi" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestGetHBInfo_in_tr_exchange_huobi - 2019.07.04 at 19h 36m 18s.xml">
+      <configuration name="TestGetHBInfo in tr/exchange/huobi" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestGetHBInfo_in_tr_exchange_huobi - 2019.07.04 at 19h 37m 13s.xml">
+      <configuration name="TestGetHBInfo in tr/exchange/huobi" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestGetHBInfo_in_tr_exchange_huobi - 2019.07.04 at 19h 38m 15s.xml">
+      <configuration name="TestGetHBInfo in tr/exchange/huobi" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestGetHBInfo_in_tr_exchange_huobi - 2019.07.04 at 19h 39m 28s.xml">
+      <configuration name="TestGetHBInfo in tr/exchange/huobi" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestGetHBInfo_in_tr_exchange_huobi - 2019.07.04 at 19h 40m 08s.xml">
+      <configuration name="TestGetHBInfo in tr/exchange/huobi" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestGetHBInfo_in_tr_exchange_huobi - 2019.07.04 at 19h 40m 48s.xml">
+      <configuration name="TestGetHBInfo in tr/exchange/huobi" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestGetHBInfo_in_tr_exchange_huobi - 2019.07.04 at 19h 41m 48s.xml">
+      <configuration name="TestGetHBInfo in tr/exchange/huobi" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestGetHBInfo_in_tr_exchange_huobi - 2019.07.04 at 20h 08m 38s.xml">
+      <configuration name="TestGetHBInfo in tr/exchange/huobi" configurationId="GoTestRunConfiguration" />
+    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -173,7 +271,7 @@
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19794345" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20308483" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
@@ -183,11 +281,11 @@
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.32905984" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.6657682" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="10" weight="0.32905984" />
-      <window_info anchor="bottom" id="Run" order="11" visible="true" weight="0.32345015" />
+      <window_info active="true" anchor="bottom" id="Run" order="11" visible="true" weight="0.23315364" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -220,24 +318,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.go">
+    <entry file="file://C:/Go/src/runtime/panic.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
+        <state relative-caret-position="113">
+          <caret line="521" selection-start-line="521" selection-end-line="521" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/exchange/zhaobi/quotation.go">
+    <entry file="file://C:/Go/src/testing/testing.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7700">
-          <caret line="384" column="39" selection-start-line="384" selection-start-column="17" selection-end-line="384" selection-end-column="39" />
+        <state relative-caret-position="65">
+          <caret line="829" selection-start-line="829" selection-end-line="829" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/exchange/huobi/quotation.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        <state relative-caret-position="127">
+          <caret line="111" column="18" lean-forward="true" selection-start-line="111" selection-start-column="18" selection-end-line="111" selection-end-column="18" />
+          <folding>
+            <element signature="e#15#127#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exchange/zhaobi/quotation.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="179" column="29" selection-start-line="179" selection-start-column="29" selection-end-line="179" selection-end-column="29" />
+          <folding>
+            <element signature="e#16#140#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exchange/huobi/huobi_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exchange/public.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="30" column="31" lean-forward="true" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
+          <folding>
+            <element signature="e#14#94#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util/util.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
         </state>
       </provider>
     </entry>

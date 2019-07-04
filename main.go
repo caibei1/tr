@@ -2,28 +2,46 @@ package main
 
 import (
 	"./exchange/zhaobi"
+	"fmt"
 	log "github.com/sirupsen/logrus"
 	"time"
-	"fmt"
+	"tr/exchange/huobi"
+	"tr/util"
 )
 
 func main()  {
-	log.SetLevel(log.InfoLevel)
-	test()
-}
-
-
-func test()  {
-	zhaobi.Init()
-	zhaobi.GetZBIndexInfo()
-	zhaobi.GetZBMarketInfo(10,1)
+	log.SetLevel(log.WarnLevel)
+	// 找币
 	zbc := zhaobi.NewZBClient()
-	for true {
-		time.Sleep(time.Second)
-		fmt.Println(zbc.GetLastBuyPrice(1))
-		fmt.Println(zbc.GetLastSellPrice(1))
-		fmt.Println(zbc.GetLastSuccessRMBPrice(1))
-		fmt.Println(zbc.GetOpen(1))
-	}
+	zbc.Init()
 
+	// 火币
+	hbc := huobi.NewHBClient()
+	hbc.Init()
+
+	// 等待初始化完成
+	time.Sleep(time.Second*3)
+
+	// 监控找币与火币价格差
+	go func() {
+		for   {
+			for k,v := range huobi.Symbol{
+				buy := hbc.GetLastBuyPrice(k)
+				sell := zbc.GetLastSellPrice(k)
+				b := util.IsOnePercent(buy,sell)
+				log.Warn(v,buy,sell)
+				if b {
+					time.Sleep(time.Minute)
+					fmt.Println("=====")
+				}
+			}
+			time.Sleep(time.Second)
+		}
+	}()
+
+	select {
+
+	}
 }
+
+
