@@ -62,7 +62,7 @@ func initSymbol()  {
 	Symbol[pub.YCC] = "YCCUSDT"
 	Symbol[pub.BTY] = "BTYUSDT"
 	Symbol[pub.BTC] = "BTCUSDT"
-	Symbol[pub.BCH] = "BCHUSDT"
+	Symbol[pub.BCH] = "BCCUSDT"
 	Symbol[pub.ETH] = "ETHUSDT"
 	Symbol[pub.ETC] = "ETCUSDT"
 	Symbol[pub.ZEC] = "ZECUSDT"
@@ -72,7 +72,7 @@ func initSymbol()  {
 	Symbol1["YCCUSDT"] = pub.YCC
 	Symbol1["BTYUSDT"] = pub.BTY
 	Symbol1["BTCUSDT"] = pub.BTC
-	Symbol1[ "BCHUSDT"] = pub.BCH
+	Symbol1["BCCUSDT"] = pub.BCH
 	Symbol1["ETHUSDT"] = pub.ETH
 	Symbol1["ETCUSDT"] = pub.ETC
 	Symbol1["ZECUSDT"] = pub.ZEC
@@ -314,6 +314,23 @@ func GetZBQuotation(symbol int) *pub.Quotation {
 	return ZBQuotationMap[symbol]
 }
 
+// 获取买单
+func (*ZBClient) GetBuyP(symbol int) []pub.Tr {
+	q := ZBQuotationMap[symbol]
+	q.RLock()
+	defer q.RUnlock()
+	return q.Buys
+}
+
+// 获取卖单
+func (*ZBClient) GetSellP(symbol int) []pub.Tr {
+	q := ZBQuotationMap[symbol]
+	q.RLock()
+	defer q.RUnlock()
+	return q.Sells
+}
+
+
 // 获取最新购买价
 func (*ZBClient) GetLastBuyPrice(symbol int) float64 {
 	q := ZBQuotationMap[symbol]
@@ -355,3 +372,70 @@ func (*ZBClient) GetOpen(symbol int) float64 {
 	q := ZBQuotationMap[symbol]
 	return q.Open
 }
+
+func GetAccount() *ZBAccountResp {
+	url := "https://api.biqianbao.top/api/Account/Asset"
+	client := &http.Client{}
+	req, err := http.NewRequest("POST",url,nil)
+	if err != nil{
+		log.Error("找币获取账号信息失败：http请求失败：",err)
+		return nil
+	}
+
+	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+	// token
+	req.Header.Set("Authorization", "Bearer 5d42db2b06eef1a48bcd95aff582da450471a182")
+	req.Header.Set("FZM-REQUEST-OS", "FZM-REQUEST-OS")
+	//req.Header.Set("Cookie", "name=anny")
+
+	resp, err := client.Do(req)
+
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Error("找币获取账号信息失败,ioutil.ReadAll失败：",err)
+		return nil
+	}
+	acc := &ZBAccountResp{}
+	err = json.Unmarshal(body,acc)
+	if err != nil {
+		log.Error("找币获取账号信息失败,json.Unmarshal失败：",err)
+		return nil
+	}
+	if acc.Code != 200 {
+		log.Error("找币获取账号信息失败,code != 200失败：",acc.Code )
+		return nil
+	}
+	return acc
+}
+
+type ZBAccountResp struct {
+	Code int `json:"code"`
+	Data ZBList `json:"data"`
+}
+
+type ZBList struct {
+	List ZBAccountData `json:"list"`
+}
+
+type ZBAccountData struct {
+	USDT ZBAccount `json:"USDT"`
+	YCC ZBAccount `json:"YCC"`
+	BTY ZBAccount `json:"BTY"`
+}
+
+
+//"active":"20.007795",
+//	"frozen":"38.439401",
+//	"poundage":"11.278269",
+//	"name":"USDT",
+//	"valuation":"407.9614",
+//	"realactive":"20.007795",
+//	"total":"58.447196"
+
+type ZBAccount struct {
+	Active FNumber `json:"active"`
+	Frozen FNumber `json:"frozen"`
+	Total FNumber `json:"total"`
+} 

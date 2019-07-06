@@ -159,6 +159,9 @@ func SyncMarketInfo()  {
 
 func (*HBClient)GetLastBuyPrice(symbol int) float64  {
 	q := HBQuotationMap[symbol]
+	if len(q.Buys) == 0 {
+		return 0
+	}
 	return q.Buys[0].Price
 }
 
@@ -168,3 +171,12 @@ func (*HBClient)GetLastSellPrice(symbol int) float64{
 	return q.Sells[0].Price
 }
 
+
+// todo
+func (*HBClient) GetBuyP(symbol int) []pub.Tr{
+	return nil
+}
+
+func (*HBClient) GetSellP(symbol int) []pub.Tr{
+	return nil
+}

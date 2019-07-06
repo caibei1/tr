@@ -12,6 +12,12 @@ type ExClient interface {
 
 	// 获取最新人民币成交价
 	//GetLastSuccessRMBPrice(symbol int) float64
+
+	// 获取买单
+	GetBuyP(symbol int) []Tr
+
+	// 获取市场卖单
+	GetSellP(symbol int) []Tr
 }
 
 
@@ -43,7 +49,11 @@ type Tr struct {
 	Success  int // 是否成功，在我的历史里的字段
 }
 
-
+type Account struct {
+	Active float64 `json:"active"`
+	Frozen float64 `json:"frozen"`
+	Total float64 `json:"total"`
+}
 
 const YCC  = 0
 const BTY  = 1
@@ -53,3 +63,4 @@ const ETH  = 4
 const ETC  = 5
 const ZEC  = 6
 const LTC  = 7
+const USDT = 100
