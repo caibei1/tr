@@ -1,13 +1,13 @@
 package zhaobi
 
 import (
-	"net/http"
+	"encoding/json"
 	log "github.com/sirupsen/logrus"
 	"io/ioutil"
-	"encoding/json"
-	"sync"
+	"net/http"
 	"strconv"
 	"time"
+	pub "tr/exchange"
 )
 
 // 获取找币行情  只做usdt的
@@ -20,49 +20,13 @@ func NewZBClient() *ZBClient {
 	return &ZBClient{}
 }
 
-var ZBQuotationMap map[int]*ZBQuotation
-
-const YCC  = 0
-const BTY  = 1
-const BTC  = 2
-const BCH  = 3
-const ETH  = 4
-const ETC  = 5
-const ZEC  = 6
-const LTC  = 7
-
-
-// 包含币的各种信息，所需要的所有信息从此处拿
-type ZBQuotation struct {
-	NewSuccess float64 // 最新成交价
-	Buys []ZBTr // 买单
-	Sells []ZBTr // 卖单
-	Histroy []ZBTr // 历史成交
-	MyHistroy []ZBTr //我的成交历史
-	MyBuys []ZBTr  // 我的买单
-	MySell []ZBTr // 我的卖单
-	sync.RWMutex
-	IsBuy bool //是否有买单
-	IsSell bool //是否有卖单
-	Symbol int  // 交易对
-	SymbolStr string  // 交易对
-}
-
-
-// 挂单 价格数量
-type ZBTr struct {
-	Price float64
-	Count float64
-	Point int  // 当前指针
-	Date string // 时间
-	Success  int // 是否成功，在我的历史里的字段
-}
+var ZBQuotationMap map[int]*pub.Quotation
 
 
 // 加载币的数据
-func Init()  {
+func (*ZBClient) Init()  {
 	// 初始化交易对
-	InitSymbol()
+	initSymbol()
 	
 	// 初始化数据
 	InitZBQuotation()
@@ -93,26 +57,26 @@ var Symbol map[int]string
 // 反交易对
 var Symbol1 map[string]int
 // 初始化交易对
-func InitSymbol()  {
+func initSymbol()  {
 	Symbol = make(map[int]string,10)
-	Symbol[YCC] = "YCCUSDT"
-	Symbol[BTY] = "BTYUSDT"
-	Symbol[BTC] = "BTCUSDT"
-	Symbol[BCH] = "BCHUSDT"
-	Symbol[ETH] = "ETHUSDT"
-	Symbol[ETC] = "ETCUSDT"
-	Symbol[ZEC] = "ZECUSDT"
-	Symbol[LTC] = "LTCUSDT"
+	Symbol[pub.YCC] = "YCCUSDT"
+	Symbol[pub.BTY] = "BTYUSDT"
+	Symbol[pub.BTC] = "BTCUSDT"
+	Symbol[pub.BCH] = "BCHUSDT"
+	Symbol[pub.ETH] = "ETHUSDT"
+	Symbol[pub.ETC] = "ETCUSDT"
+	Symbol[pub.ZEC] = "ZECUSDT"
+	Symbol[pub.LTC] = "LTCUSDT"
 
 	Symbol1 = make(map[string]int,10)
-	Symbol1["YCCUSDT"] = YCC
-	Symbol1["BTYUSDT"] = BTY
-	Symbol1["BTCUSDT"] = BTC
-	Symbol1[ "BCHUSDT"] = BCH
-	Symbol1["ETHUSDT"] = ETH
-	Symbol1["ETCUSDT"] = ETC
-	Symbol1["ZECUSDT"] = ZEC
-	Symbol1["LTCUSDT"] = LTC
+	Symbol1["YCCUSDT"] = pub.YCC
+	Symbol1["BTYUSDT"] = pub.BTY
+	Symbol1["BTCUSDT"] = pub.BTC
+	Symbol1[ "BCHUSDT"] = pub.BCH
+	Symbol1["ETHUSDT"] = pub.ETH
+	Symbol1["ETCUSDT"] = pub.ETC
+	Symbol1["ZECUSDT"] = pub.ZEC
+	Symbol1["LTCUSDT"] = pub.LTC
 
 }
 
@@ -132,7 +96,7 @@ type USDT struct {
 	Buy     FNumber   `json:"buy"`
 	Sell    FNumber   `json:"sell"`
 	Open    FNumber   `json:"open"`
-	Lastrmb FNumber   `json:"lastrmb"`
+	Lastrmb FNumber   `json:"lastrmb"` // 最新成交价，人民币
 	High    FNumber   `json:"high"` // 今日最高价
 	Low     FNumber   `json:"low"`  // 今日最低价
 	Vol     FNumber   `json:"vol"`
@@ -213,6 +177,7 @@ func GetZBMarketInfo(num int,symbol int) *ZBMarketInfoResp {
 	if len(info.ZBMarketInfo.MarketData.Buys) == 0 || len(info.ZBMarketInfo.MarketData.Sell) == 0{
 		log.Info(info.ZBMarketInfo.MarketData.Buys)
 		log.Info(info.ZBMarketInfo.MarketData.Sell)
+		log.Error(string(body))
 		log.Error("买，卖为空， 获取市场信息失败：",err)
 		return nil
 	}
@@ -292,6 +257,9 @@ func SyncIndexInfo()  {
 			if i,ok := Symbol1[d.Symbol]; ok {
 				q := ZBQuotationMap[i]
 				q.Lock()
+				q.Lastrmb = float64(d.Lastrmb)
+				q.Range = float64(d.Range)
+				q.Open = float64(d.Open)
 				// todo
 				q.Unlock()
 			}
@@ -308,18 +276,18 @@ func SyncMarketInfo()  {
 			q.Lock()
 			// todo
 			// 买
-			q .Buys = make([]ZBTr,0,20)
+			q .Buys = make([]pub.Tr,0,20)
 			for _,v := range resp.ZBMarketInfo.MarketData.Buys{
-				zBTr := ZBTr{
+				zBTr := pub.Tr{
 					Price:float64(v.Price),
 					Count:float64(v.Am),
 				}
 				q .Buys = append(q.Buys,zBTr)
 			}
 			// 卖
-			q .Sells = make([]ZBTr,0,20)
+			q .Sells = make([]pub.Tr,0,20)
 			for _,v := range resp.ZBMarketInfo.MarketData.Sell{
-				zBTr := ZBTr{
+				zBTr := pub.Tr{
 					Price:float64(v.Price),
 					Count:float64(v.Am),
 				}
@@ -331,9 +299,9 @@ func SyncMarketInfo()  {
 }
 
 func InitZBQuotation()  {
-	ZBQuotationMap =  make(map[int]*ZBQuotation,len(Symbol))
+	ZBQuotationMap =  make(map[int]*pub.Quotation,len(Symbol))
 	for k,v := range Symbol {
-		q :=  &ZBQuotation{}
+		q :=  &pub.Quotation{}
 		q.Lock()
 		ZBQuotationMap[k] = q
 		q.Symbol = k
@@ -342,7 +310,7 @@ func InitZBQuotation()  {
 	}
 }
 
-func GetZBQuotation(symbol int) *ZBQuotation {
+func GetZBQuotation(symbol int) *pub.Quotation {
 	return ZBQuotationMap[symbol]
 }
 
@@ -374,4 +342,16 @@ func (*ZBClient) GetLastSellPrice(symbol int) float64 {
 		}
 	}
 	return min
+}
+
+// 获取最新人民币成交价
+func (*ZBClient) GetLastSuccessRMBPrice(symbol int) float64 {
+	q := ZBQuotationMap[symbol]
+	return q.Lastrmb
+}
+
+
+func (*ZBClient) GetOpen(symbol int) float64 {
+	q := ZBQuotationMap[symbol]
+	return q.Open
 }
