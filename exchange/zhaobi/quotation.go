@@ -131,7 +131,11 @@ func GetZBIndexInfo() *ZBIndexInfo {
 		log.Error("GetIndexInfo Get 获取首页信息失败：",err)
 		return nil
 	}
-	defer resp.Body.Close()
+	if resp != nil {
+		defer resp.Body.Close()
+	}else {
+		return nil
+	}
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		log.Error("GetIndexInfo ReadAll 获取首页信息失败：",err)
@@ -161,7 +165,11 @@ func GetZBMarketInfo(num int,symbol int) *ZBMarketInfoResp {
 	url := `https://api.biqianbao.top/api/data/market?num=`+strconv.Itoa(num)+`&format=&symbol=`+symbolStr
 	resp,err := http.Get(url)
 	log.Debug(url)
-	defer resp.Body.Close()
+	if resp != nil {
+		defer resp.Body.Close()
+	}else {
+		return nil
+	}
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		log.Error("GetIndexInfo ReadAll 获取市场信息失败：",err)

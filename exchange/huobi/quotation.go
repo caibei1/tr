@@ -99,7 +99,11 @@ func GetHBInfo(sy int) *HBInfoResp {
 		log.Error("GetIndexInfo Get 获取火币信息market/detail/merged失败：",err)
 		return nil
 	}
-	defer resp.Body.Close()
+	if resp != nil {
+		defer resp.Body.Close()
+	}else {
+		return nil
+	}
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		log.Error("GetIndexInfo ReadAll 获取火币信息market/detail/merged失败：",err)
