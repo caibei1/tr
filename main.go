@@ -72,16 +72,16 @@ func main()  {
 func GuaDan(price, count, buyPrice float64, t int, mark int,symbol string)  {
 	if t == 1 {
 		log.Warnf("====买入%s，买入价格：%f, 买入金额：%f, mark: %d", symbol, price, count, mark)
-		price = price - 10
+		money = money - 10
 		order[mark] = price
 	}else {
-		log.Warnf("====卖出%s，买出价格：%f, 卖出收益百分比：%f, mark: %d", symbol, (price-buyPrice)/price , count, mark)
-		price = price + 10*(1.0+(price-buyPrice)/price - 0.001)
+		log.Warnf("====卖出%s，卖出价格：%f, 卖出收益百分比：%f, mark: %d", symbol, price, (price-buyPrice)/price , mark)
+		money = money + 10*(1.0+(price-buyPrice)/price - 0.002)
 		delete(order,mark)
 	}
-	log.Warn("余额：%f", price)
+	log.Warn("余额：%f", money)
 	for k,v := range order{
-		log.Warn("正在进行中的单子： %d, %f",k, v)
+		log.Warnf("正在进行中的单子： %d, %f",k, v)
 	}
 }
 
@@ -89,8 +89,9 @@ func WaitSell(z *zhaobi.ZBClient,buyP float64, mark int,symbol int, symbolStr st
 	for {
 		buy := z.GetLastBuyPrice(symbol)
 		if (buy - buyP)/buyP >= 0.01 {
-			log.Warn("====监控到价格大约0.01，价格差为 %f, 卖出", (buy - buyP)/buyP)
+			log.Warnf("====监控到价格大约0.01，价格差为 %f, 卖出", (buy - buyP)/buyP)
 			GuaDan(buy,10,buyP,2,mark,symbolStr)
+			break
 		}
 	}
 
