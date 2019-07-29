@@ -61,22 +61,25 @@ func initSymbol()  {
 	Symbol = make(map[int]string,10)
 	Symbol[pub.YCC] = "YCCUSDT"
 	Symbol[pub.BTY] = "BTYUSDT"
-	Symbol[pub.BTC] = "BTCUSDT"
-	Symbol[pub.BCH] = "BCCUSDT"
-	Symbol[pub.ETH] = "ETHUSDT"
-	Symbol[pub.ETC] = "ETCUSDT"
-	Symbol[pub.ZEC] = "ZECUSDT"
-	Symbol[pub.LTC] = "LTCUSDT"
+	Symbol[111] = "YCCBTY"
+	//Symbol[pub.BTC] = "BTCUSDT"
+	//Symbol[pub.BCH] = "BCCUSDT"
+	//Symbol[pub.ETH] = "ETHUSDT"
+	//Symbol[pub.ETC] = "ETCUSDT"
+	//Symbol[pub.ZEC] = "ZECUSDT"
+	//Symbol[pub.LTC] = "LTCUSDT"
 
 	Symbol1 = make(map[string]int,10)
 	Symbol1["YCCUSDT"] = pub.YCC
 	Symbol1["BTYUSDT"] = pub.BTY
-	Symbol1["BTCUSDT"] = pub.BTC
-	Symbol1["BCCUSDT"] = pub.BCH
-	Symbol1["ETHUSDT"] = pub.ETH
-	Symbol1["ETCUSDT"] = pub.ETC
-	Symbol1["ZECUSDT"] = pub.ZEC
-	Symbol1["LTCUSDT"] = pub.LTC
+	//Symbol1["BTCUSDT"] = pub.BTC
+	//Symbol1["BCCUSDT"] = pub.BCH
+	//Symbol1["ETHUSDT"] = pub.ETH
+	//Symbol1["ETCUSDT"] = pub.ETC
+	//Symbol1["ZECUSDT"] = pub.ZEC
+	//Symbol1["LTCUSDT"] = pub.LTC
+
+	Symbol1["YCCBTY"] = 111
 
 }
 
@@ -446,4 +449,4 @@ type ZBAccount struct {
 	Active FNumber `json:"active"`
 	Frozen FNumber `json:"frozen"`
 	Total FNumber `json:"total"`
-} 
+}

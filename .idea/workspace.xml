@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/exchange/zhaobi/quotation.go" line="383" />
+    <bookmark url="file://$PROJECT_DIR$/exchange/zhaobi/quotation.go" line="386" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88300580-eedc-4a43-ae2a-6860fdb1341d" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/exchange/zhaobi/bty_ycc.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main" beforeDir="false" afterPath="$PROJECT_DIR$/main" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exchange/zhaobi/quotation.go" beforeDir="false" afterPath="$PROJECT_DIR$/exchange/zhaobi/quotation.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exchange/zhaobi/zhaobi_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/exchange/zhaobi/zhaobi_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/util.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/util.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,26 +24,32 @@
       <file leaf-file-name="ycc.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/exchange/zhaobi/ycc.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+            <state relative-caret-position="281">
+              <caret line="66" column="26" lean-forward="true" selection-start-line="66" selection-start-column="26" selection-end-line="66" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="bty_ycc.go" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/exchange/zhaobi/bty_ycc.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="370">
+              <caret line="85" column="15" lean-forward="true" selection-start-line="85" selection-start-column="15" selection-end-line="85" selection-end-column="15" />
+              <folding>
+                <element signature="e#16#68#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="81" column="28" lean-forward="true" selection-start-line="81" selection-start-column="28" selection-end-line="81" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="util.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/util/util.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+            <state relative-caret-position="230">
+              <caret line="22" column="17" lean-forward="true" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+              <folding>
+                <element signature="e#14#119#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -49,8 +57,8 @@
       <file leaf-file-name="quotation.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/exchange/zhaobi/quotation.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="18" column="28" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="28" />
+            <state relative-caret-position="262">
+              <caret line="448" column="4" selection-start-line="448" selection-start-column="4" selection-end-line="448" selection-end-column="4" />
               <folding>
                 <element signature="e#16#140#0" expanded="true" />
               </folding>
@@ -58,41 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="request.go" pinned="false" current-in-tab="false">
-        <entry file="file://C:/Go/src/net/http/request.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17181">
-              <caret line="768" column="42" selection-start-line="768" selection-start-column="42" selection-end-line="768" selection-end-column="42" />
-              <folding>
-                <element signature="e#212#459#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="io.go" pinned="false" current-in-tab="false">
-        <entry file="file://C:/Go/src/io/io.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1702">
-              <caret line="76" column="5" selection-start-line="76" selection-start-column="5" selection-end-line="76" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="public.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/exchange/public.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="quotation.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/exchange/huobi/quotation.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3588">
-              <caret line="163" column="38" selection-start-line="163" selection-start-column="32" selection-end-line="163" selection-end-column="38" />
+            <state relative-caret-position="92">
+              <caret line="43" column="5" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -100,8 +78,8 @@
       <file leaf-file-name="zhaobi_test.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/exchange/zhaobi/zhaobi_test.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+            <state relative-caret-position="94">
+              <caret line="5" column="36" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -135,13 +113,15 @@
       <list>
         <option value="$PROJECT_DIR$/exchange/zhaobi/class.go" />
         <option value="$PROJECT_DIR$/start/main.go" />
-        <option value="$PROJECT_DIR$/exchange/zhaobi/zhaobi_test.go" />
         <option value="$PROJECT_DIR$/exchange/public.go" />
         <option value="$PROJECT_DIR$/exchange/zhaobi/ycc.go" />
-        <option value="$PROJECT_DIR$/exchange/zhaobi/quotation.go" />
         <option value="$PROJECT_DIR$/exchange/huobi/quotation.go" />
         <option value="$PROJECT_DIR$/util/util.go" />
+        <option value="$PROJECT_DIR$/main1.go" />
+        <option value="$PROJECT_DIR$/exchange/zhaobi/zhaobi_test.go" />
         <option value="$PROJECT_DIR$/main.go" />
+        <option value="$PROJECT_DIR$/exchange/zhaobi/quotation.go" />
+        <option value="$PROJECT_DIR$/exchange/zhaobi/bty_ycc.go" />
       </list>
     </option>
   </component>
@@ -166,7 +146,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -183,12 +162,6 @@
               <item name="tr" type="b2602c69:ProjectViewProjectNode" />
               <item name="tr" type="462c0819:PsiDirectoryNode" />
               <item name="exchange" type="462c0819:PsiDirectoryNode" />
-              <item name="huobi" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tr" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tr" type="462c0819:PsiDirectoryNode" />
-              <item name="exchange" type="462c0819:PsiDirectoryNode" />
               <item name="zhaobi" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -196,19 +169,28 @@
               <item name="tr" type="462c0819:PsiDirectoryNode" />
               <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="tr" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="configurable.Global.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Module.GOPATH.is.expanded" value="false" />
+    <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="go.dep" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -236,6 +218,17 @@
       <filePath value="$PROJECT_DIR$/main.go" />
       <directory value="$PROJECT_DIR$/" />
     </configuration>
+    <configuration name="TestBtyYcc in tr/exchange/zhaobi" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="tr" />
+      <working_directory value="$PROJECT_DIR$/exchange/zhaobi" />
+      <go_parameters value="-i" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="tr/exchange/zhaobi" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestBtyYcc$" />
+    </configuration>
     <configuration name="TestGetAccount in tr/exchange/zhaobi" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="tr" />
       <working_directory value="$PROJECT_DIR$/exchange/zhaobi" />
@@ -250,35 +243,46 @@
     <list>
       <item itemvalue="Go Build.go build main.go" />
       <item itemvalue="Go Test.TestGetAccount in tr/exchange/zhaobi" />
+      <item itemvalue="Go Test.TestBtyYcc in tr/exchange/zhaobi" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build main.go" />
+        <item itemvalue="Go Test.TestBtyYcc in tr/exchange/zhaobi" />
         <item itemvalue="Go Test.TestGetAccount in tr/exchange/zhaobi" />
       </list>
     </recent_temporary>
   </component>
   <component name="TestHistory">
-    <history-entry file="TestGetAccount_in_tr_exchange_zhaobi - 2019.07.06 at 09h 26m 21s.xml">
-      <configuration name="TestGetAccount in tr/exchange/zhaobi" configurationId="GoTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="TestGetAccount_in_tr_exchange_zhaobi - 2019.07.06 at 09h 29m 01s.xml">
-      <configuration name="TestGetAccount in tr/exchange/zhaobi" configurationId="GoTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="TestGetAccount_in_tr_exchange_zhaobi - 2019.07.06 at 11h 26m 25s.xml">
-      <configuration name="TestGetAccount in tr/exchange/zhaobi" configurationId="GoTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="TestGetAccount_in_tr_exchange_zhaobi - 2019.07.06 at 11h 39m 45s.xml">
-      <configuration name="TestGetAccount in tr/exchange/zhaobi" configurationId="GoTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="TestGetAccount_in_tr_exchange_zhaobi - 2019.07.06 at 11h 41m 08s.xml">
-      <configuration name="TestGetAccount in tr/exchange/zhaobi" configurationId="GoTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="TestGetAccount_in_tr_exchange_zhaobi - 2019.07.06 at 11h 41m 49s.xml">
-      <configuration name="TestGetAccount in tr/exchange/zhaobi" configurationId="GoTestRunConfiguration" />
-    </history-entry>
     <history-entry file="TestGetAccount_in_tr_exchange_zhaobi - 2019.07.06 at 12h 52m 54s.xml">
       <configuration name="TestGetAccount in tr/exchange/zhaobi" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestGetAccount_in_tr_exchange_zhaobi - 2019.07.29 at 19h 14m 41s.xml">
+      <configuration name="TestGetAccount in tr/exchange/zhaobi" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestBtyYcc_in_tr_exchange_zhaobi - 2019.07.29 at 19h 26m 03s.xml">
+      <configuration name="TestBtyYcc in tr/exchange/zhaobi" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestBtyYcc_in_tr_exchange_zhaobi - 2019.07.29 at 19h 26m 44s.xml">
+      <configuration name="TestBtyYcc in tr/exchange/zhaobi" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestBtyYcc_in_tr_exchange_zhaobi - 2019.07.29 at 19h 27m 54s.xml">
+      <configuration name="TestBtyYcc in tr/exchange/zhaobi" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestBtyYcc_in_tr_exchange_zhaobi - 2019.07.29 at 19h 29m 13s.xml">
+      <configuration name="TestBtyYcc in tr/exchange/zhaobi" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestBtyYcc_in_tr_exchange_zhaobi - 2019.07.29 at 19h 33m 29s.xml">
+      <configuration name="TestBtyYcc in tr/exchange/zhaobi" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestBtyYcc_in_tr_exchange_zhaobi - 2019.07.29 at 19h 34m 05s.xml">
+      <configuration name="TestBtyYcc in tr/exchange/zhaobi" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestBtyYcc_in_tr_exchange_zhaobi - 2019.07.29 at 19h 34m 30s.xml">
+      <configuration name="TestBtyYcc in tr/exchange/zhaobi" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestBtyYcc_in_tr_exchange_zhaobi - 2019.07.29 at 19h 51m 00s.xml">
+      <configuration name="TestBtyYcc in tr/exchange/zhaobi" configurationId="GoTestRunConfiguration" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -294,16 +298,16 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21179625" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.117962465" />
       <window_info anchor="bottom" id="TODO" order="10" weight="0.32905984" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="2" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="3" />
-      <window_info anchor="bottom" id="Run" order="11" weight="0.29243937" />
+      <window_info active="true" anchor="bottom" id="Run" order="11" visible="true" weight="0.18402283" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="4" visible="true" weight="0.09129815" />
+      <window_info anchor="bottom" id="Terminal" order="4" weight="0.54350924" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -325,37 +329,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/util/util.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/exchange/zhaobi/quotation.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="18" column="28" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="28" />
-          <folding>
-            <element signature="e#16#140#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Go/src/net/http/request.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17664">
-          <caret line="768" column="42" selection-start-line="768" selection-start-column="42" selection-end-line="768" selection-end-column="42" />
-          <folding>
-            <element signature="e#212#459#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Go/src/io/io.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1702">
@@ -661,55 +638,85 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/exchange/zhaobi/zhaobi_test.go">
+    <entry file="file://$PROJECT_DIR$/util/util.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="14" column="16" selection-start-line="13" selection-start-column="5" selection-end-line="14" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/vendor.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="21" lean-forward="true" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exchange/huobi/quotation.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
-          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+          <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
+          <folding>
+            <element signature="e#15#128#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main1.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="4" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/exchange/zhaobi/ycc.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        <state relative-caret-position="281">
+          <caret line="66" column="26" lean-forward="true" selection-start-line="66" selection-start-column="26" selection-end-line="66" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/exchange/public.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+        <state relative-caret-position="92">
+          <caret line="43" column="5" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exchange/zhaobi/zhaobi_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94">
+          <caret line="5" column="36" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/exchange/zhaobi/quotation.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="18" column="28" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="28" />
+        <state relative-caret-position="262">
+          <caret line="448" column="4" selection-start-line="448" selection-start-column="4" selection-end-line="448" selection-end-column="4" />
           <folding>
             <element signature="e#16#140#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/exchange/huobi/quotation.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3588">
-          <caret line="163" column="38" selection-start-line="163" selection-start-column="32" selection-end-line="163" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/util/util.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="81" column="28" lean-forward="true" selection-start-line="81" selection-start-column="28" selection-end-line="81" selection-end-column="28" />
+        <state relative-caret-position="230">
+          <caret line="22" column="17" lean-forward="true" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+          <folding>
+            <element signature="e#14#119#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exchange/zhaobi/bty_ycc.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="85" column="15" lean-forward="true" selection-start-line="85" selection-start-column="15" selection-end-line="85" selection-end-column="15" />
+          <folding>
+            <element signature="e#16#68#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
