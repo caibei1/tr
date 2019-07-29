@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/exchange/zhaobi/quotation.go" line="384" />
+    <bookmark url="file://$PROJECT_DIR$/exchange/zhaobi/quotation.go" line="377" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88300580-eedc-4a43-ae2a-6860fdb1341d" name="Default" comment="">
+    <list default="true" id="88300580-eedc-4a43-ae2a-6860fdb1341d" name="Default" comment="挂单">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exchange/zhaobi/quotation.go" beforeDir="false" afterPath="$PROJECT_DIR$/exchange/zhaobi/quotation.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,11 +63,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="go" value="577" />
+          <entry key="txt" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Go" value="577" />
+          <entry key="PLAIN_TEXT" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -120,8 +121,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/exchange/zhaobi/quotation.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="460" column="5" lean-forward="true" selection-start-line="460" selection-start-column="5" selection-end-line="460" selection-end-column="5" />
+            <state relative-caret-position="266">
+              <caret line="468" column="35" lean-forward="true" selection-start-line="468" selection-start-column="35" selection-end-line="468" selection-end-column="35" />
               <folding>
                 <element signature="e#16#140#0" expanded="true" />
               </folding>
@@ -248,6 +249,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="GO_FMT" value="true" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -391,6 +393,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="挂单" />
+    <option name="LAST_COMMIT_MESSAGE" value="挂单" />
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/exchange/zhaobi/class.go" />
     <entry file="file://C:/Go/src/net/http/response.go" />
@@ -463,8 +469,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/exchange/zhaobi/quotation.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="460" column="5" lean-forward="true" selection-start-line="460" selection-start-column="5" selection-end-line="460" selection-end-column="5" />
+        <state relative-caret-position="266">
+          <caret line="468" column="35" lean-forward="true" selection-start-line="468" selection-start-column="35" selection-end-line="468" selection-end-column="35" />
           <folding>
             <element signature="e#16#140#0" expanded="true" />
           </folding>
