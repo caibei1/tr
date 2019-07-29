@@ -14,7 +14,7 @@ var money = 100.0
 var order =  make(map[int]float64)
 
 func main()  {
-	log.SetLevel(log.DebugLevel)
+	log.SetLevel(log.WarnLevel)
 	// 找币
 	zbc := zhaobi.NewZBClient()
 	zbc.Init()

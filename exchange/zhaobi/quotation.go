@@ -1,7 +1,9 @@
 package zhaobi
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 	log "github.com/sirupsen/logrus"
 	"io/ioutil"
 	"net/http"
@@ -11,9 +13,7 @@ import (
 )
 
 // 获取找币行情  只做usdt的
-
 type ZBClient struct {
-
 }
 
 func NewZBClient() *ZBClient {
@@ -22,18 +22,17 @@ func NewZBClient() *ZBClient {
 
 var ZBQuotationMap map[int]*pub.Quotation
 
-
 // 加载币的数据
-func (*ZBClient) Init()  {
+func (*ZBClient) Init() {
 	// 初始化交易对
 	initSymbol()
-	
+
 	// 初始化数据
 	InitZBQuotation()
 
 	// 同步数据
 	go func() {
-		for   {
+		for {
 			SyncIndexInfo()
 			time.Sleep(time.Second)
 		}
@@ -42,23 +41,24 @@ func (*ZBClient) Init()  {
 
 	// 同步数据
 	go func() {
-		for   {
+		for {
 			SyncMarketInfo()
 			time.Sleep(time.Second)
 		}
 
 	}()
 
-
 }
 
 // 交易对
 var Symbol map[int]string
+
 // 反交易对
 var Symbol1 map[string]int
+
 // 初始化交易对
-func initSymbol()  {
-	Symbol = make(map[int]string,10)
+func initSymbol() {
+	Symbol = make(map[int]string, 10)
 	Symbol[pub.YCC] = "YCCUSDT"
 	Symbol[pub.BTY] = "BTYUSDT"
 	Symbol[111] = "YCCBTY"
@@ -69,7 +69,7 @@ func initSymbol()  {
 	//Symbol[pub.ZEC] = "ZECUSDT"
 	//Symbol[pub.LTC] = "LTCUSDT"
 
-	Symbol1 = make(map[string]int,10)
+	Symbol1 = make(map[string]int, 10)
 	Symbol1["YCCUSDT"] = pub.YCC
 	Symbol1["BTYUSDT"] = pub.BTY
 	//Symbol1["BTCUSDT"] = pub.BTC
@@ -96,15 +96,15 @@ type ZBData struct {
 }
 
 type USDT struct {
-	Buy     FNumber   `json:"buy"`
-	Sell    FNumber   `json:"sell"`
-	Open    FNumber   `json:"open"`
-	Lastrmb FNumber   `json:"lastrmb"` // 最新成交价，人民币
-	High    FNumber   `json:"high"` // 今日最高价
-	Low     FNumber   `json:"low"`  // 今日最低价
-	Vol     FNumber   `json:"vol"`
+	Buy     FNumber `json:"buy"`
+	Sell    FNumber `json:"sell"`
+	Open    FNumber `json:"open"`
+	Lastrmb FNumber `json:"lastrmb"` // 最新成交价，人民币
+	High    FNumber `json:"high"`    // 今日最高价
+	Low     FNumber `json:"low"`     // 今日最低价
+	Vol     FNumber `json:"vol"`
 	Range   Range   `json:"range"`  // 涨幅
-	Symbol  string   `json:"symbol"` // 交易对 BTYBTC
+	Symbol  string  `json:"symbol"` // 交易对 BTYBTC
 }
 
 // 首页接口
@@ -129,25 +129,25 @@ type USDT struct {
 //                "date":"2019-06-30 11:43:32"
 //            },
 func GetZBIndexInfo() *ZBIndexInfo {
-	resp,err := http.Get(`https://api.biqianbao.top/api/data/Ticker?sort=cname`)
+	resp, err := http.Get(`https://api.biqianbao.top/api/data/Ticker?sort=cname`)
 	if err != nil {
-		log.Error("GetIndexInfo Get 获取首页信息失败：",err)
+		log.Error("GetIndexInfo Get 获取首页信息失败：", err)
 		return nil
 	}
 	if resp != nil {
 		defer resp.Body.Close()
-	}else {
+	} else {
 		return nil
 	}
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Error("GetIndexInfo ReadAll 获取首页信息失败：",err)
+		log.Error("GetIndexInfo ReadAll 获取首页信息失败：", err)
 		return nil
 	}
 	var info = &ZBIndexInfo{}
-	err = json.Unmarshal(body,info)
+	err = json.Unmarshal(body, info)
 	if err != nil {
-		log.Error("GetIndexInfo ReadAll 获取首页信息失败：",err)
+		log.Error("GetIndexInfo ReadAll 获取首页信息失败：", err)
 		return nil
 	}
 	if len(info.Data.USDT) < 2 || info.Data.USDT[0].Sell <= 0 {
@@ -162,34 +162,34 @@ func GetZBIndexInfo() *ZBIndexInfo {
 // 1卖0买
 // 获取币的详情信息 买单卖单成交
 // symbol交易对
-func GetZBMarketInfo(num int,symbol int) *ZBMarketInfoResp {
+func GetZBMarketInfo(num int, symbol int) *ZBMarketInfoResp {
 
 	symbolStr := GetSymnol(symbol)
-	url := `https://api.biqianbao.top/api/data/market?num=`+strconv.Itoa(num)+`&format=&symbol=`+symbolStr
-	resp,err := http.Get(url)
+	url := `https://api.biqianbao.top/api/data/market?num=` + strconv.Itoa(num) + `&format=&symbol=` + symbolStr
+	resp, err := http.Get(url)
 	log.Debug(url)
 	if resp != nil {
 		defer resp.Body.Close()
-	}else {
+	} else {
 		return nil
 	}
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Error("GetIndexInfo ReadAll 获取市场信息失败：",err)
+		log.Error("GetIndexInfo ReadAll 获取市场信息失败：", err)
 		return nil
 	}
 	var info = &ZBMarketInfoResp{}
-	err = json.Unmarshal(body,info)
+	err = json.Unmarshal(body, info)
 	if err != nil {
-		log.Error("GetIndexInfo ReadAll 获取市场信息失败：",err)
+		log.Error("GetIndexInfo ReadAll 获取市场信息失败：", err)
 		return nil
 	}
 	log.Debug("获取市场信息成功")
-	if len(info.ZBMarketInfo.MarketData.Buys) == 0 || len(info.ZBMarketInfo.MarketData.Sell) == 0{
+	if len(info.ZBMarketInfo.MarketData.Buys) == 0 || len(info.ZBMarketInfo.MarketData.Sell) == 0 {
 		log.Info(info.ZBMarketInfo.MarketData.Buys)
 		log.Info(info.ZBMarketInfo.MarketData.Sell)
 		log.Error(string(body))
-		log.Error("买，卖为空， 获取市场信息失败：",err)
+		log.Error("买，卖为空， 获取市场信息失败：", err)
 		return nil
 	}
 	log.Debug(info)
@@ -200,10 +200,10 @@ func GetZBMarketInfo(num int,symbol int) *ZBMarketInfoResp {
 
 type ZBMarketInfoResp struct {
 	ZBMarketInfo ZBMarketInfo `json:"data"`
-} 
+}
 
 type ZBMarketInfo struct {
-	Trade []Trade `json:"trade"`
+	Trade      []Trade    `json:"trade"`
 	MarketData MarketData `json:"marketdata"`
 }
 
@@ -215,9 +215,9 @@ type ZBMarketInfo struct {
 // 历史成交信息
 type Trade struct {
 	Price FNumber `json:"price"`
-	Am FNumber `json:"am"`
-	Time string `json:"time"`
-	Type INumber `json:"type"`
+	Am    FNumber `json:"am"`
+	Time  string  `json:"time"`
+	Type  INumber `json:"type"`
 }
 
 type MarketData struct {
@@ -225,14 +225,12 @@ type MarketData struct {
 	Sell []Trade `json:"sell"`
 }
 
-
 type FNumber float64
 type INumber int
 type Range float64
 
-
 func (t *FNumber) UnmarshalJSON(b []byte) error {
-	v, err := strconv.ParseFloat(string(b[1:len(b)-1]),64)
+	v, err := strconv.ParseFloat(string(b[1:len(b)-1]), 64)
 	if err != nil {
 		return err
 	}
@@ -241,7 +239,7 @@ func (t *FNumber) UnmarshalJSON(b []byte) error {
 }
 
 func (t *INumber) UnmarshalJSON(b []byte) error {
-	v, err := strconv.Atoi(string(b[1:len(b)-1]))
+	v, err := strconv.Atoi(string(b[1 : len(b)-1]))
 	if err != nil {
 		return err
 	}
@@ -250,7 +248,7 @@ func (t *INumber) UnmarshalJSON(b []byte) error {
 }
 
 func (t *Range) UnmarshalJSON(b []byte) error {
-	v, err := strconv.ParseFloat(string(b[1:len(b)-2]),64)
+	v, err := strconv.ParseFloat(string(b[1:len(b)-2]), 64)
 	if err != nil {
 		return err
 	}
@@ -258,14 +256,13 @@ func (t *Range) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-
 // 同步首页信息
-func SyncIndexInfo()  {
+func SyncIndexInfo() {
 	info := GetZBIndexInfo()
 	if info != nil {
 		datas := info.Data.USDT
-		for _,d := range datas {
-			if i,ok := Symbol1[d.Symbol]; ok {
+		for _, d := range datas {
+			if i, ok := Symbol1[d.Symbol]; ok {
 				q := ZBQuotationMap[i]
 				q.Lock()
 				q.Lastrmb = float64(d.Lastrmb)
@@ -279,40 +276,40 @@ func SyncIndexInfo()  {
 
 }
 
-func SyncMarketInfo()  {
-	for k,_ := range Symbol  {
-		resp := GetZBMarketInfo(20,k)
-		if resp != nil{
+func SyncMarketInfo() {
+	for k, _ := range Symbol {
+		resp := GetZBMarketInfo(20, k)
+		if resp != nil {
 			q := ZBQuotationMap[k]
 			q.Lock()
 			// todo
 			// 买
-			q .Buys = make([]pub.Tr,0,20)
-			for _,v := range resp.ZBMarketInfo.MarketData.Buys{
+			q.Buys = make([]pub.Tr, 0, 20)
+			for _, v := range resp.ZBMarketInfo.MarketData.Buys {
 				zBTr := pub.Tr{
-					Price:float64(v.Price),
-					Count:float64(v.Am),
+					Price: float64(v.Price),
+					Count: float64(v.Am),
 				}
-				q .Buys = append(q.Buys,zBTr)
+				q.Buys = append(q.Buys, zBTr)
 			}
 			// 卖
-			q .Sells = make([]pub.Tr,0,20)
-			for _,v := range resp.ZBMarketInfo.MarketData.Sell{
+			q.Sells = make([]pub.Tr, 0, 20)
+			for _, v := range resp.ZBMarketInfo.MarketData.Sell {
 				zBTr := pub.Tr{
-					Price:float64(v.Price),
-					Count:float64(v.Am),
+					Price: float64(v.Price),
+					Count: float64(v.Am),
 				}
-				q .Sells = append(q.Sells,zBTr)
+				q.Sells = append(q.Sells, zBTr)
 			}
 			q.Unlock()
 		}
 	}
 }
 
-func InitZBQuotation()  {
-	ZBQuotationMap =  make(map[int]*pub.Quotation,len(Symbol))
-	for k,v := range Symbol {
-		q :=  &pub.Quotation{}
+func InitZBQuotation() {
+	ZBQuotationMap = make(map[int]*pub.Quotation, len(Symbol))
+	for k, v := range Symbol {
+		q := &pub.Quotation{}
 		q.Lock()
 		ZBQuotationMap[k] = q
 		q.Symbol = k
@@ -341,7 +338,6 @@ func (*ZBClient) GetSellP(symbol int) []pub.Tr {
 	return q.Sells
 }
 
-
 // 获取最新购买价
 func (*ZBClient) GetLastBuyPrice(symbol int) float64 {
 	q := ZBQuotationMap[symbol]
@@ -349,7 +345,7 @@ func (*ZBClient) GetLastBuyPrice(symbol int) float64 {
 	defer q.RUnlock()
 	buys := q.Buys
 	var max = 0.0
-	for _,v := range buys {
+	for _, v := range buys {
 		if v.Price > max {
 			max = v.Price
 		}
@@ -364,7 +360,7 @@ func (*ZBClient) GetLastSellPrice(symbol int) float64 {
 	defer q.RUnlock()
 	sells := q.Sells
 	var min = 10000000.0
-	for _,v := range sells {
+	for _, v := range sells {
 		if v.Price < min {
 			min = v.Price
 		}
@@ -378,7 +374,6 @@ func (*ZBClient) GetLastSuccessRMBPrice(symbol int) float64 {
 	return q.Lastrmb
 }
 
-
 func (*ZBClient) GetOpen(symbol int) float64 {
 	q := ZBQuotationMap[symbol]
 	return q.Open
@@ -387,9 +382,9 @@ func (*ZBClient) GetOpen(symbol int) float64 {
 func GetAccount() *ZBAccountResp {
 	url := "https://api.biqianbao.top/api/Account/Asset"
 	client := &http.Client{}
-	req, err := http.NewRequest("POST",url,nil)
-	if err != nil{
-		log.Error("找币获取账号信息失败：http请求失败：",err)
+	req, err := http.NewRequest("POST", url, nil)
+	if err != nil {
+		log.Error("找币获取账号信息操作失败：http请求失败：", err)
 		return nil
 	}
 
@@ -405,24 +400,24 @@ func GetAccount() *ZBAccountResp {
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Error("找币获取账号信息失败,ioutil.ReadAll失败：",err)
+		log.Error("找币获取账号信息失败,ioutil.ReadAll失败：", err)
 		return nil
 	}
 	acc := &ZBAccountResp{}
-	err = json.Unmarshal(body,acc)
+	err = json.Unmarshal(body, acc)
 	if err != nil {
-		log.Error("找币获取账号信息失败,json.Unmarshal失败：",err)
+		log.Error("找币获取账号信息失败,json.Unmarshal失败：", err)
 		return nil
 	}
 	if acc.Code != 200 {
-		log.Error("找币获取账号信息失败,code != 200失败：",acc.Code )
+		log.Error("找币获取账号信息失败,code != 200失败：", acc.Code)
 		return nil
 	}
 	return acc
 }
 
 type ZBAccountResp struct {
-	Code int `json:"code"`
+	Code int    `json:"code"`
 	Data ZBList `json:"data"`
 }
 
@@ -432,10 +427,9 @@ type ZBList struct {
 
 type ZBAccountData struct {
 	USDT ZBAccount `json:"USDT"`
-	YCC ZBAccount `json:"YCC"`
-	BTY ZBAccount `json:"BTY"`
+	YCC  ZBAccount `json:"YCC"`
+	BTY  ZBAccount `json:"BTY"`
 }
-
 
 //"active":"20.007795",
 //	"frozen":"38.439401",
@@ -448,5 +442,44 @@ type ZBAccountData struct {
 type ZBAccount struct {
 	Active FNumber `json:"active"`
 	Frozen FNumber `json:"frozen"`
-	Total FNumber `json:"total"`
+
+	Total  FNumber `json:"total"`
 }
+
+func PostBill(amount string, currency string, currency2 string, price string, ty string) *ZBAccountResp {
+	url := "https://api.biqianbao.top/api/trade/place"
+	client := &http.Client{}
+	requestText := "amount=" + amount + "&" + "currency=" + currency + "&" + "currency2=" + currency2 + "&" + "price=" + price + "&" + "ty=" + ty
+	req, err := http.NewRequest("POST", url, bytes.NewBufferString(requestText))
+	if err != nil {
+		log.Error("找币挂单操作失败：http请求失败：", err)
+		return nil
+	}
+	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+	// token
+	req.Header.Set("Authorization", "Bearer e243dff6f8132ef254fae4e1f628e6d7966f8645")
+
+	resp, err := client.Do(req)
+
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+	a := string(body)
+	fmt.Printf(a)
+	if err != nil {
+		log.Error("找币挂单操作失败,ioutil.ReadAll失败：", err)
+		return nil
+	}
+	acc := &ZBAccountResp{}
+	err = json.Unmarshal(body, acc)
+	if err != nil {
+		log.Error("找币挂单操作失败,json.Unmarshal失败：", err)
+		return nil
+	}
+	if acc.Code != 200 {
+		log.Error("找币挂单操作失败,code != 200失败：", acc.Code)
+		return nil
+	}
+	return acc
+
+}
+
