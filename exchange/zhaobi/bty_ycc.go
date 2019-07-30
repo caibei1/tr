@@ -173,7 +173,7 @@ func YCCBTY(zbc *ZBClient)  {
 func PlaceOrder(amout float64, currency, currency2 string, price float64, ty string) bool {
 	log.Warnf("amout: %f, currency： %s, currency2:  %s, price: %f, ty: %s", amout,currency,currency2,price,ty)
 
-	//PostBill(FloatToString(amout),currency,currency2,FloatToString(price),ty)
+	PostBill(FloatToString(amout),currency,currency2,FloatToString(price),ty)
 
 	return true
 }
