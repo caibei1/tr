@@ -19,7 +19,7 @@ func main()  {
 	zbc := zhaobi.NewZBClient()
 	zbc.Init()
 	// 等待初始化完成
-	time.Sleep(time.Second*2)
+	time.Sleep(time.Second*5)
 	go zhaobi.BtyYcc(zbc)
 	select {
 

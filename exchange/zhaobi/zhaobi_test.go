@@ -9,7 +9,10 @@ import (
 
 func TestGetAccount(t *testing.T) {
 	resp := GetAccount()
-	fmt.Println(resp)
+	fmt.Printf("%+v",resp)
+
+	fmt.Println(FloatToString(0.1111111))
+
 }
 
 func TestBtyYcc(t *testing.T) {

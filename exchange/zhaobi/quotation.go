@@ -390,7 +390,7 @@ func GetAccount() *ZBAccountResp {
 
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	// token
-	req.Header.Set("Authorization", "Bearer 5d42db2b06eef1a48bcd95aff582da450471a182")
+	req.Header.Set("Authorization", "Bearer e243dff6f8132ef254fae4e1f628e6d7966f8645")
 	req.Header.Set("FZM-REQUEST-OS", "FZM-REQUEST-OS")
 	//req.Header.Set("Cookie", "name=anny")
 
