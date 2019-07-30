@@ -8,7 +8,11 @@ func IsOnePercent(buy,sell float64) bool {
 	percent := (buy - sell)/sell
 	//log.Warnf("大平台buy: %f, 小平台sell: %f, diff %f", buy ,sell, percent*100.0)
 	//
-	if percent > 0.001 && percent < 0.2{
+	if percent < -0.005 {
+		log.Warnf(">>> 抛出 大平台buy: %f, 小平台sell: %f, diff %f", buy ,sell, percent*100.0)
+	}
+
+	if percent > 0.002 && percent < 0.2{
 		log.Warnf(">>>大平台buy: %f, 小平台sell: %f, diff %f", buy ,sell, percent*100.0)
 		return true
 	}
