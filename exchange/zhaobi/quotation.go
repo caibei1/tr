@@ -61,22 +61,25 @@ func initSymbol() {
 	Symbol = make(map[int]string, 10)
 	Symbol[pub.YCC] = "YCCUSDT"
 	Symbol[pub.BTY] = "BTYUSDT"
-	Symbol[pub.BTC] = "BTCUSDT"
-	Symbol[pub.BCH] = "BCCUSDT"
-	Symbol[pub.ETH] = "ETHUSDT"
-	Symbol[pub.ETC] = "ETCUSDT"
-	Symbol[pub.ZEC] = "ZECUSDT"
-	Symbol[pub.LTC] = "LTCUSDT"
+	Symbol[111] = "YCCBTY"
+	//Symbol[pub.BTC] = "BTCUSDT"
+	//Symbol[pub.BCH] = "BCCUSDT"
+	//Symbol[pub.ETH] = "ETHUSDT"
+	//Symbol[pub.ETC] = "ETCUSDT"
+	//Symbol[pub.ZEC] = "ZECUSDT"
+	//Symbol[pub.LTC] = "LTCUSDT"
 
 	Symbol1 = make(map[string]int, 10)
 	Symbol1["YCCUSDT"] = pub.YCC
 	Symbol1["BTYUSDT"] = pub.BTY
-	Symbol1["BTCUSDT"] = pub.BTC
-	Symbol1["BCCUSDT"] = pub.BCH
-	Symbol1["ETHUSDT"] = pub.ETH
-	Symbol1["ETCUSDT"] = pub.ETC
-	Symbol1["ZECUSDT"] = pub.ZEC
-	Symbol1["LTCUSDT"] = pub.LTC
+	//Symbol1["BTCUSDT"] = pub.BTC
+	//Symbol1["BCCUSDT"] = pub.BCH
+	//Symbol1["ETHUSDT"] = pub.ETH
+	//Symbol1["ETCUSDT"] = pub.ETC
+	//Symbol1["ZECUSDT"] = pub.ZEC
+	//Symbol1["LTCUSDT"] = pub.LTC
+
+	Symbol1["YCCBTY"] = 111
 
 }
 
@@ -387,7 +390,7 @@ func GetAccount() *ZBAccountResp {
 
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	// token
-	req.Header.Set("Authorization", "Bearer 5d42db2b06eef1a48bcd95aff582da450471a182")
+	req.Header.Set("Authorization", "Bearer e243dff6f8132ef254fae4e1f628e6d7966f8645")
 	req.Header.Set("FZM-REQUEST-OS", "FZM-REQUEST-OS")
 	//req.Header.Set("Cookie", "name=anny")
 
@@ -439,6 +442,7 @@ type ZBAccountData struct {
 type ZBAccount struct {
 	Active FNumber `json:"active"`
 	Frozen FNumber `json:"frozen"`
+
 	Total  FNumber `json:"total"`
 }
 
@@ -478,3 +482,4 @@ func PostBill(amount string, currency string, currency2 string, price string, ty
 	return acc
 
 }
+

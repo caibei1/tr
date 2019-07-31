@@ -14,6 +14,20 @@ var money = 100.0
 var order =  make(map[int]float64)
 
 func main()  {
+	log.SetLevel(log.WarnLevel)
+	// 找币
+	zbc := zhaobi.NewZBClient()
+	zbc.Init()
+	// 等待初始化完成
+	time.Sleep(time.Second*5)
+	go zhaobi.BtyYcc(zbc)
+	go zhaobi.YCCBTY(zbc)
+	select {
+
+	}
+}
+
+func main1()  {
 
 	log.Warn("初始金额:",money)
 	log.SetLevel(log.WarnLevel)

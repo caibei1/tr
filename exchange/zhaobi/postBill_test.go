@@ -6,6 +6,6 @@ import (
 )
 
 func TestPostBill(t *testing.T) {
-	resp := PostBill("0.0001", "YCC", "usdt", "0.099999", "SELL")
+	resp := PostBill("2", "YCC", "BTY", "0.0441", "BUY")
 	fmt.Println(resp)
 }
