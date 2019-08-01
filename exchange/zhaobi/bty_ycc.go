@@ -1,7 +1,9 @@
 package zhaobi
 
 import (
+	"fmt"
 	log "github.com/sirupsen/logrus"
+	"strings"
 	"time"
 	"strconv"
 )
@@ -40,24 +42,27 @@ func BtyYcc(zbc *ZBClient)  {
 		yccCount := btyCount/YCCBTYSells[0].Price
 		usdtCount := yccCount*yccBuys[0].Price
 
-		log.Warnf("usdtCount: %f",usdtCount)
+
 
 		if usdtCount > 5.0*(1+0.005) {
 			log.Warn("=====in=====")
+			log.Warnf("usdtCount: %f",usdtCount)
 			// 获取每个挂单的金额
 			if btySells[0].Price*btyBuys[0].Count < 2.0 {
+				time.Sleep(time.Second)
 				continue
 			}
 
 			if YCCBTYSells[0].Price* YCCBTYSells[0].Count < 2.0 {
+				time.Sleep(time.Second)
 				continue
 			}
 
 			if yccBuys[0].Price*yccBuys[0].Count < 2.0 {
+				time.Sleep(time.Second)
 				continue
 			}
 
-			log.Warn("1111111")
 			// 获取余额
 			acc := GetAccount()
 			usdt := 2.0
@@ -120,20 +125,24 @@ func YCCBTY(zbc *ZBClient)  {
 		btyCount := yccCount*YCCBTYBuys[0].Price
 		usdtCount := btyCount*btyBuys[0].Price
 
-		log.Warnf("usdtCount: %f",usdtCount)
+
 
 		if usdtCount > 5.0*(1+0.005) {
 			log.Warn("=====in=====")
+			log.Warnf("usdtCount: %f",usdtCount)
 			// 获取每个挂单的金额
 			if btySells[0].Price*btyBuys[0].Count < 2.0 {
+				time.Sleep(time.Second)
 				continue
 			}
 
 			if YCCBTYSells[0].Price* YCCBTYSells[0].Count < 2.0 {
+				time.Sleep(time.Second)
 				continue
 			}
 
 			if yccBuys[0].Price*yccBuys[0].Count < 2.0 {
+				time.Sleep(time.Second)
 				continue
 			}
 
@@ -173,7 +182,23 @@ func YCCBTY(zbc *ZBClient)  {
 func PlaceOrder(amout float64, currency, currency2 string, price float64, ty string) bool {
 	log.Warnf("amout: %f, currency： %s, currency2:  %s, price: %f, ty: %s", amout,currency,currency2,price,ty)
 
-	PostBill(FloatToString(amout),currency,currency2,FloatToString(price),ty)
+	a := FloatToString(price)[:8]
+	if currency == "BTY" {
+		a = FloatToString(price)[:6]
+	}
+	fmt.Println("价格: ",a)
+
+	b := ""
+	if currency == "YCC" {
+		b = strings.Split(FloatToString(amout),".")[0]
+	}
+
+	if currency == "BTY" {
+		b = strings.Split(FloatToString(amout),".")[0] + "." + string(strings.Split(FloatToString(amout),".")[1][1])
+		//b = FloatToString(amout)[:4]
+	}
+	fmt.Println("数量：",b)
+	PostBill(b,currency,currency2,a,ty)
 
 	return true
 }
