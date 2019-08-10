@@ -45,7 +45,7 @@ func BtyYcc(zbc *ZBClient)  {
 
 
 
-		if usdtCount > 5.0*(1+0.004) {
+		if usdtCount > 5.0*(1+0.005) {
 			log.Warn("=====in usdt买bty  bty换ycc  然后卖掉ycc换usdt =====")
 			log.Warnf("usdtCount: %f",usdtCount)
 
@@ -68,8 +68,10 @@ func BtyYcc(zbc *ZBClient)  {
 			// 获取余额
 			acc := GetAccount()
 			usdt := 4.0
+
 			wg := sync.WaitGroup{}
 			wg.Add(3)
+
 
 			// 买入bty
 			// 获取usdt
@@ -119,8 +121,10 @@ func BtyYcc(zbc *ZBClient)  {
 
 			wg.Wait()
 			end := float64(GetAccount().Data.List.USDT.Active)
+
 			if end - allUsdt < 1 {
 				time.Sleep(time.Second*2)
+
 			}
 			log.Warnf("原始usdt：%f,成交后usdt：%f, 盈利：%f",allUsdt, end, end - allUsdt)
 
@@ -166,7 +170,7 @@ func YCCBTY(zbc *ZBClient)  {
 
 
 
-		if usdtCount > 5.0*(1+0.004) {
+		if usdtCount > 5.0*(1+0.005) {
 			log.Warn("=====in  usdt买ycc  ycc换bty  然后卖掉bty换usdt=====")
 			log.Warnf("usdtCount: %f",usdtCount)
 			// 获取每个挂单的金额
@@ -234,6 +238,10 @@ func YCCBTY(zbc *ZBClient)  {
 			go PlaceOrder(wg,allBTY,"BTY","USDT",btyBuys[0].Price,"SELL")
 			wg.Wait()
 			end := float64(GetAccount().Data.List.USDT.Active)
+			if end - allUsdt < -1.0 {
+				time.Sleep(time.Second*2)
+				end = float64(GetAccount().Data.List.USDT.Active)
+			}
 			log.Warnf("原始usdt：%f,成交后usdt：%f, 盈利：%f",allUsdt, end, end - allUsdt)
 			if end - allUsdt < -1 {
 				time.Sleep(time.Second*2)
