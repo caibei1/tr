@@ -6,6 +6,7 @@ import (
 	"strings"
 	"time"
 	"strconv"
+	"sync"
 )
 
 // 比特元ycc交易对
@@ -66,50 +67,64 @@ func BtyYcc(zbc *ZBClient)  {
 
 			// 获取余额
 			acc := GetAccount()
-			usdt := 2.0
-
+			usdt := 4.0
+			wg := sync.WaitGroup{}
+			wg.Add(3)
 
 			// 买入bty
 			// 获取usdt
 			allUsdt := float64(acc.Data.List.USDT.Active)
-			if allUsdt < 2.0 {
+			if allUsdt < 4.0 {
+
+				time.Sleep(time.Second*5)
+				continue
 				usdt = allUsdt
 			}
 
-			PlaceOrder(usdt/btySells[0].Price, "BTY","USDT", btySells[0].Price,"BUY")
+			go PlaceOrder(wg,usdt/btySells[0].Price, "BTY","USDT", btySells[0].Price,"BUY")
 
 			// bty买入ycc
 			// 获取所有bty
-			var allBty float64
-			allBty = float64(GetAccount().Data.List.BTY.Active)
-			if allBty < 1.0 {
-				time.Sleep(time.Second*2)
-				allBty = float64(GetAccount().Data.List.BTY.Active)
-			}
-			if allBty < 1.0 {
-				log.Error("1 allBty < 1.0")
-				continue
-			}
-			PlaceOrder(allBty*(1-0.002)/YCCBTYSells[0].Price,"YCC","BTY",YCCBTYSells[0].Price,"BUY")
+			//var allBty float64
+			//allBty = float64(GetAccount().Data.List.BTY.Active)
+			//if allBty < 1.0 {
+			//	time.Sleep(time.Second*2)
+			//	allBty = float64(GetAccount().Data.List.BTY.Active)
+			//}
+			//if allBty < 1.0 {
+			//	log.Error("1 allBty < 1.0")
+			//	continue
+			//}
+
+			allBty := usdt/btySells[0].Price
+
+			go PlaceOrder(wg,allBty*(1-0.001)/YCCBTYSells[0].Price,"YCC","BTY",YCCBTYSells[0].Price,"BUY")
 
 			// 卖出YCC
 			var allYCC float64
 
-			allYCC = float64(GetAccount().Data.List.YCC.Active)
-			if allYCC < 10.0 {
-				time.Sleep(time.Second*2)
-				allYCC = float64(GetAccount().Data.List.YCC.Active)
-			}
-			if allYCC < 10.0 {
-				log.Error("1 allYCC < 10.0")
-				continue
-			}
-			PlaceOrder(allYCC,"YCC","USDT",yccBuys[0].Price,"SELL")
+			//allYCC = float64(GetAccount().Data.List.YCC.Active)
+			//if allYCC < 10.0 {
+			//	time.Sleep(time.Second*2)
+			//	allYCC = float64(GetAccount().Data.List.YCC.Active)
+			//}
+			//if allYCC < 10.0 {
+			//	log.Error("1 allYCC < 10.0")
+			//	continue
+			//}
 
+			allYCC = allBty*(1-0.001)/YCCBTYSells[0].Price
+
+			go PlaceOrder(wg,allYCC,"YCC","USDT",yccBuys[0].Price,"SELL")
+
+			wg.Wait()
 			end := float64(GetAccount().Data.List.USDT.Active)
+			if end - allUsdt < 1 {
+				time.Sleep(time.Second*2)
+			}
 			log.Warnf("原始usdt：%f,成交后usdt：%f, 盈利：%f",allUsdt, end, end - allUsdt)
 
-			time.Sleep(time.Millisecond*500)
+
 		}
 		time.Sleep(time.Second*1)
 	}
@@ -173,48 +188,56 @@ func YCCBTY(zbc *ZBClient)  {
 
 			// 获取余额
 			acc := GetAccount()
-			usdt := 2.0
+			usdt := 4.0
 
-
+			wg := sync.WaitGroup{}
+			wg.Add(3)
 
 			// 获取usdt
 			allUsdt := float64(acc.Data.List.USDT.Active)
-			if allUsdt < 2.0 {
+			if allUsdt < 4.0 {
+				time.Sleep(time.Second*2)
+				continue
 				usdt = allUsdt
 			}
 
 			// 买入ycc
-			PlaceOrder(usdt/yccSells[0].Price, "YCC","USDT", yccSells[0].Price,"BUY")
+			go PlaceOrder(wg,usdt/yccSells[0].Price, "YCC","USDT", yccSells[0].Price,"BUY")
 
 			// 卖出ycc 获得bty
 			var allYCC float64
-			allYCC = float64(GetAccount().Data.List.YCC.Active)
-			if allYCC < 10.0 {
-				time.Sleep(time.Second*2)
-				allYCC = float64(GetAccount().Data.List.YCC.Active)
-			}
-			if allYCC < 10.0 {
-				log.Error("2 allYCC < 10.0")
-				time.Sleep(time.Millisecond*500)
-				continue
-			}
-			PlaceOrder(allYCC,"YCC","BTY",YCCBTYBuys[0].Price,"SELL")
+			//allYCC = float64(GetAccount().Data.List.YCC.Active)
+			//if allYCC < 10.0 {
+			//	time.Sleep(time.Second*2)
+			//	allYCC = float64(GetAccount().Data.List.YCC.Active)
+			//}
+			//if allYCC < 10.0 {
+			//	log.Error("2 allYCC < 10.0")
+			//	time.Sleep(time.Millisecond*500)
+			//	continue
+			//}
+			allYCC = usdt/yccSells[0].Price
+			go PlaceOrder(wg,allYCC,"YCC","BTY",YCCBTYBuys[0].Price,"SELL")
 
 			// 卖出bty
-			var allBTY float64
-			allBTY = float64(GetAccount().Data.List.BTY.Active)
-			if allBTY < 1.0 {
-				time.Sleep(time.Second)
-				allBTY = float64(GetAccount().Data.List.BTY.Active)
-			}
-			if allBTY < 1.0 {
-				log.Error("2 allBTY < 1.0")
-				time.Sleep(time.Millisecond*500)
-				continue
-			}
-			PlaceOrder(allBTY,"BTY","USDT",btyBuys[0].Price,"SELL")
+			var allBTY = allYCC*YCCBTYBuys[0].Price
+			//allBTY = float64(GetAccount().Data.List.BTY.Active)
+			//if allBTY < 1.0 {
+			//	time.Sleep(time.Second)
+			//	allBTY = float64(GetAccount().Data.List.BTY.Active)
+			//}
+			//if allBTY < 1.0 {
+			//	log.Error("2 allBTY < 1.0")
+			//	time.Sleep(time.Millisecond*500)
+			//	continue
+			//}
+			go PlaceOrder(wg,allBTY,"BTY","USDT",btyBuys[0].Price,"SELL")
+			wg.Wait()
 			end := float64(GetAccount().Data.List.USDT.Active)
 			log.Warnf("原始usdt：%f,成交后usdt：%f, 盈利：%f",allUsdt, end, end - allUsdt)
+			if end - allUsdt < -1 {
+				time.Sleep(time.Second*2)
+			}
 			time.Sleep(time.Millisecond*300)
 
 		}
@@ -224,9 +247,9 @@ func YCCBTY(zbc *ZBClient)  {
 }
 
 // 0 买 1卖
-func PlaceOrder(amout float64, currency, currency2 string, price float64, ty string) bool {
+func PlaceOrder(wg sync.WaitGroup,amout float64, currency, currency2 string, price float64, ty string) bool {
 	log.Warnf("amout: %f, currency： %s, currency2:  %s, price: %f, ty: %s", amout,currency,currency2,price,ty)
-
+	defer wg.Done()
 	a := FloatToString(price)[:8]
 	if currency == "BTY" {
 		a = FloatToString(price)[:6]
